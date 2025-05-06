@@ -1,0 +1,5 @@
+# Ignore node_modules dans tous les sous-dossiers
+**/node_modules/
+**/dist/
+**/.env
+.DS_Store
