@@ -1,6 +1,16 @@
 {
-    "greeting": "Bienvenue sur mon portfolio",
-    "about": "À propos de moi",
-    "contact": "Contact"
-  }
-  
+    "navigation": {
+        "home": "Accueil",
+        "projects": "Projets",
+        "career": "Carrière professionnelle",
+        "qualifications": "Qualifications"
+    },
+    "settings": {
+        "theme": {
+            "title": "Thème",
+            "light": "Claire",
+            "dark": "Sombre",
+            "system": "Système"
+        }
+    }
+}

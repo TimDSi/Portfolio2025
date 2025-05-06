@@ -1,58 +1,19 @@
 import { useState, useRef, useEffect } from 'react';
 import './Settings.css';
 import { useTranslation } from 'react-i18next';
-
-
-const availableLanguages = [
-  { code: 'en', label: '🇬🇧 English' },
-  { code: 'fr', label: '🇫🇷 Français' },
-  // ex: { code: 'es', label: '🇪🇸 Español' },
-];
-
-const availableThemes = [
-  { code: 'light', label: '☀️ Clair' },
-  { code: 'dark', label: '🌙 Sombre' },
-  // ex: { code: 'dracula', label: '🧛 Dracula' },
-];
+import { availableLanguages, getInitialLanguage, changeLanguage } from './settings-languages';
+import { availableThemes, getInitialTheme, changeTheme } from './settings-themes';
 
 const Settings = () => {
   const [open, setOpen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  const getInitialLanguage = () => {
-    let lang = 'en';
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlLang = urlParams.get('lang')?.toLowerCase();
-    if (availableLanguages.find(l => l.code === urlLang)) {
-        lang = urlLang || lang;
-        localStorage.setItem('language', lang);
-    }
-
-    const storedLang = localStorage.getItem('language');
-    if (availableLanguages.find(l => l.code === storedLang)) {
-        lang = storedLang || lang;
-    }
-    return lang;
-  };
-
-  const getInitialTheme = () => {
-    const storedTheme = localStorage.getItem('theme');
-    if (availableThemes.find(t => t.code === storedTheme)) return storedTheme;
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
-    return 'light';
-  };
-
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [language, setLanguage] = useState(getInitialLanguage);
   const [theme, setTheme] = useState(getInitialTheme);
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setOpen(false);
       }
     };
@@ -60,25 +21,16 @@ const Settings = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const { i18n } = useTranslation();
-
-  const handleLanguageChange = (e) => {
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = e.target.value;
     setLanguage(selected);
-    localStorage.setItem('language', selected);
-    i18n.changeLanguage(selected);
+    changeLanguage(selected, i18n); 
   };
 
-  useEffect(() => {
-    language== getInitialLanguage();
-    i18n.changeLanguage(language);
-  }, [language, i18n]);
-
-  const handleThemeChange = (e) => {
+  const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = e.target.value;
     setTheme(selected);
-    localStorage.setItem('theme', selected);
-    document.documentElement.setAttribute('data-theme', selected);
+    changeTheme(selected); 
   };
 
   return (
@@ -89,18 +41,22 @@ const Settings = () => {
       {open && (
         <div className="settings-dropdown">
           <label>
-            Langue :
+            Language :
             <select value={language} onChange={handleLanguageChange}>
-              {availableLanguages.map(lang => (
-                <option key={lang.code} value={lang.code}>{lang.label}</option>
+              {availableLanguages.map((lang) => (
+                <option key={lang.code} value={lang.code}>
+                  {lang.label}
+                </option>
               ))}
             </select>
           </label>
           <label>
-            Thème :
+            {t('settings.theme.title')} :
             <select value={theme} onChange={handleThemeChange}>
-              {availableThemes.map(theme => (
-                <option key={theme.code} value={theme.code}>{theme.label}</option>
+              {availableThemes.map((theme) => (
+                <option key={theme.code} value={theme.code}>
+                  {t(`settings.theme.${theme.code}`)}
+                </option>
               ))}
             </select>
           </label>

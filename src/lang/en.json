@@ -1,6 +1,16 @@
 {
-    "greeting": "Welcome to my portfolio",
-    "about": "About Me",
-    "contact": "Contact"
-  }
-  
+    "navigation": {
+        "home": "Home",
+        "projects": "Projects",
+        "career": "Career path",
+        "qualifications": "Qualifications"
+    },
+    "settings": {
+        "theme": {
+            "title": "Theme",
+            "light": "Light",
+            "dark": "Dark",
+            "system": "System"
+        }
+    }
+}

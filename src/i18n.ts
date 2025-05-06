@@ -13,7 +13,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en', // par défaut, surchargé par localStorage après
+    lng: 'en', 
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
