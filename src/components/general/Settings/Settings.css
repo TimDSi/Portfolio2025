@@ -1,0 +1,48 @@
+.settings-wrapper {
+    position: relative;
+  }
+  
+  .settings-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .settings-dropdown {
+    position: absolute;
+    top: 2rem;
+    right: 0;
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 1000;
+    min-width: 160px;
+  }
+  
+  .settings-dropdown label {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 0.9rem;
+  }
+  
+  .settings-dropdown select {
+    margin-top: 0.25rem;
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 0.4rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .settings-dropdown select:hover {
+    background-color: #555;
+  }
+  
