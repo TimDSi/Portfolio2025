@@ -1,5 +1,6 @@
 .settings-wrapper {
     position: relative;
+    width: 100%;
   }
   
   .settings-toggle {
@@ -22,7 +23,7 @@
     flex-direction: column;
     gap: 0.5rem;
     z-index: 1000;
-    min-width: 160px;
+    width: 100%; 
   }
   
   .settings-dropdown label {

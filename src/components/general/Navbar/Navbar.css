@@ -22,18 +22,27 @@
   .nav-links {
     display: flex;
     flex: 1 1 100%;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-wrap: wrap; /* Permet aux éléments de passer sur plusieurs lignes si nécessaire */
+    justify-content: flex-start; /* Aligne les éléments à gauche */
     list-style: none;
     padding: 0;
     margin: 0;
-    gap: 1rem;
+    gap: 1rem; /* Espace entre les éléments */
+  }
+  
+  .nav-links li {
+    flex: 1; /* Largeur minimale de chaque élément (150px est un exemple, tu peux ajuster) */
+    text-align: center; /* Centrer le texte dans chaque élément */
+    display: flex; /* Assure que les <li> agissent comme des éléments flexibles */
+    justify-content: center; /* Centrer le contenu du <li> */
   }
   
   .nav-links a {
     color: white;
     text-decoration: none;
     font-weight: 500;
+    display: block; /* Assure que le lien prend tout l'espace du <li> */
+    text-align: center;
   }
   
   .nav-links a:hover {
