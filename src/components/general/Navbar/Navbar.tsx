@@ -8,7 +8,6 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="logo">MyPortfolio</div>
       <ul className="nav-links">
         <li><a href="#home">{t('navigation.home')}</a></li>
         <li><a href="#projects">{t('navigation.projects')}</a></li>
